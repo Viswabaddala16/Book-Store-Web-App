@@ -52,7 +52,7 @@ app.post('/login', async (req, res) => {
     res.json({ message: 'Login successful', token });
   } catch (error) {
     res.status(500).json({ message: 'Error during login', error: error.message });
-  }
+  }``
 });
 app.post('/forgot-password',async(req,res) => {
   const {email} = req.body;
@@ -111,14 +111,16 @@ app.use(express.static(path.join(__dirname, 'client','build')));
 app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
 });
-mongoose
- .connect(mongoDBURL)
- .then(() => {
+mongoose.connect(mongoDBURL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+  .then(() => {
     console.log("App connected to database");
-    app.listen(PORT,() => {
-        console.log(`App isrunning on the : ${PORT}`);
+    app.listen(PORT, () => {
+      console.log(`App is running on port: ${PORT}`);
     });
- })
- .catch((error) => {
-    console.log(error);
- });
+  })
+  .catch((error) => {
+    console.log('Error connecting to MongoDB:', error.message);
+  });

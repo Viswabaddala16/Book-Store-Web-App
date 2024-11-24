@@ -10,25 +10,31 @@ function ShowBook() {
     const [error, setError] = useState(null); // State to handle error
     const { id } = useParams();
 
-    useEffect(() => {
+    useEffect(() => {s
         const fetchBook = async () => {
             try {
-                const response = await axios.get(`http://localhost:5555/books/${id}`);
+                const token = localStorage.getItem('token'); // Assuming token is stored in localStorage
+                const response = await axios.get(`http://localhost:5555/books/${id}`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`, // Add Authorization header
+                    },
+                });
                 if (response.status === 200) {
                     setBook(response.data);
                 } else {
                     setError('Book not found.'); // Handle non-200 response
                 }
             } catch (error) {
-                console.error("Error fetching book:", error);
+                console.error('Error fetching book:', error);
                 setError('Error fetching book data.');
             } finally {
                 setLoading(false); // Set loading to false in finally block
             }
         };
-
+    
         fetchBook();
     }, [id]);
+    
 
     if (loading) {
         return <Spinner />;

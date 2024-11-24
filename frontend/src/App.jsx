@@ -9,29 +9,30 @@ import Signup from './pages/Signup';
 import Login from './pages/Login';
 import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
+import PrivateRoute from './components/PrivateRoute';
 
 function App() {
-  const[isLoggedIn,setIsLoggedIn] = useState(false);
+  
   return (
     <Routes>
       <Route path = "/" 
-      element = {<Home isLoggedIn = {isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>}
-      />
+      element = {<Home />}
+      />  
       <Route path='/signup' 
-        element={<Signup setIsLoggedIn = {setIsLoggedIn} />} 
+        element={<Signup />} 
       />
       <Route path='/login' 
-        element={<Login setIsLoggedIn = {setIsLoggedIn} />} />
+        element={<Login  />} />
       <Route path='/forgot-password' element = {<ForgotPassword/>}/>
       <Route path='/reset-password' element = {<ResetPassword/>}/>
       <Route path = "/books/details/:id" 
-        element = {<ShowBook/>} />
+        element = {<PrivateRoute><ShowBook/></PrivateRoute>} />
       <Route path = "/books/create" 
-        element = {<CreateBook/>}/>
+        element = {<PrivateRoute><CreateBook/></PrivateRoute>}/>
       <Route path = "/books/delete/:id" 
-        element = {<DeleteBook/>}/>
+        element = {<PrivateRoute><DeleteBook/></PrivateRoute>}/>
       <Route path = "/books/edit/:id" 
-        element = {<EditBook/>}/>
+        element = {<PrivateRoute><EditBook/></PrivateRoute>}/>
       
     </Routes>
   )

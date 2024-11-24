@@ -1,3 +1,9 @@
-export const PORT = 5555;
-export const mongoDBURL = 'mongodb+srv://admin:admin@viswacluter.ng6ij.mongodb.net/?retryWrites=true&w=majority&appName=viswacluter';
-export const JWT_SECRET = process.env.JWT_SECRET || 'your-very-secure-jwt-secret';  
+import dotenv from 'dotenv';  // Import dotenv package
+
+// Load environment variables from .env file
+dotenv.config();  // Ensure .env is loaded before accessing environment variables
+
+// Exporting values from the environment
+export const PORT = process.env.PORT || 5000;
+export const mongoDBURL = process.env.MONGODB_URL;  // MongoDB connection string
+export const JWT_SECRET = process.env.JWT_SECRET || 'your-very-secure-jwt-secret';  // JWT secret
