@@ -40,7 +40,7 @@ function CreateBook() {
 
     setLoading(true);
     try {
-      await axios.post('https://book-store-backend-lsnz.onrender.com', data, {
+      await axios.post('https://book-store-backend-lsnz.onrender.com/books', data, {
         headers: { Authorization: `Bearer ${token}` },
       });
       enqueueSnackbar('Book Created Successfully!', { variant: 'success' });
