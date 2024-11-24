@@ -14,7 +14,7 @@ const ResetPassword = () => {
         e.preventDefault();
 
         try{
-            const response = await axios.post('http://localhost:5555/reset-password',{
+            const response = await axios.post('https://book-store-backend-lsnz.onrender.com/reset-password',{
                 token,
                 password,
             });

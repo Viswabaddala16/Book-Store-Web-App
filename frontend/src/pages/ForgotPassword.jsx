@@ -7,7 +7,7 @@ const ForgotPassword = () => {
     const handleForgotPassword = async (e) => {
         e.preventDefault();
         try{
-            const response = await axios.post('http://localhost:5555/forgot-password',{email});
+            const response = await axios.post('https://book-store-backend-lsnz.onrender.com/forgot-password',{email});
             alert(response.data.message);
         }
         catch(error){
