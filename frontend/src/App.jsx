@@ -10,7 +10,7 @@ import Login from './pages/Login';
 import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
 import PrivateRoute from './components/PrivateRoute';
-
+import PdfUpload from './components/Book Upload/PdfUpload';
 function App() {
   
   return (
@@ -33,6 +33,8 @@ function App() {
         element = {<PrivateRoute><DeleteBook/></PrivateRoute>}/>
       <Route path = "/books/edit/:id" 
         element = {<PrivateRoute><EditBook/></PrivateRoute>}/>
+      <Route path = "/books/upload" 
+        element = {<PrivateRoute><PdfUpload /></PrivateRoute>}/>
       
     </Routes>
   )

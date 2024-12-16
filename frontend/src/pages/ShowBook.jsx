@@ -10,11 +10,11 @@ function ShowBook() {
     const [error, setError] = useState(null); // State to handle error
     const { id } = useParams();
 
-    useEffect(() => {s
+    useEffect(() => {
         const fetchBook = async () => {
             try {
                 const token = localStorage.getItem('token'); // Assuming token is stored in localStorage
-                const response = await axios.get(`https://book-store-backend-lsnz.onrender.com/books/${id}`, {
+                const response = await axios.get(`http://localhost:5555/books/${id}`, {
                     headers: {
                         Authorization: `Bearer ${token}`, // Add Authorization header
                     },

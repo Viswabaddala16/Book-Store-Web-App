@@ -35,7 +35,7 @@ function EditBook() {
         return;
       }
         setLoading(true);
-        const response = await axios.get(`https://book-store-backend-lsnz.onrender.com/books/${id}`, {
+        const response = await axios.get(`http://localhost:5555/books/${id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         const { title, author, publishYear } = response.data;
@@ -86,7 +86,7 @@ function EditBook() {
     }
   };
 
-  return (
+  return (  
     <div className="p-4">
       <BackButton />
       <h1 className="text-3xl my-4">Edit Book</h1>

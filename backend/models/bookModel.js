@@ -22,6 +22,22 @@ const bookSchema = new mongoose.Schema(
             ref: 'User',
             required: [true, 'User ID is required'],
         },
+        filePath: {
+            type: String,
+            required: [true, 'File path is required'],
+            // validate: {
+            //   validator: function (value) {
+            //     // Ensure filePath starts with "uploads/" and ends with ".pdf"
+            //     return /^uploads\/.+\.pdf$/.test(value);
+            //   },
+            //   message: (props) =>
+            //     `${props.value} is not a valid file path. File must be in uploads/ and have a .pdf extension.`,
+            // },
+        },
+        lastReadPage: {
+            type: Number,
+            default: 1,
+        },
     },
     {
         timestamps: true,

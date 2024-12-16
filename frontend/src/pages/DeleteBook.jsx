@@ -36,11 +36,11 @@ function DeleteBook() {
       setLoading(true);
 
       // Proceed with delete
-      const response = await axios.delete(`https://book-store-backend-lsnz.onrender.com/books/${id}`, {
+      const response = await axios.delete(`http://localhost:5555/books/${id}`, {
         headers: {
           Authorization: `Bearer ${authToken}`,
         },
-      });
+    });
 
       enqueueSnackbar(response.data.message || 'Book deleted successfully', { variant: 'success' });
       navigate('/'); // Navigate back to the book list

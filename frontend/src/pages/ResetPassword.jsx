@@ -1,31 +1,33 @@
 import React,{useState} from 'react';
 import axios from 'axios';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { useSnackbar } from 'notistack';
 
 const ResetPassword = () => {
 
     const[password,setPassword] = useState('');
-    const[successMessage,setSuccessMessage] = useState('');
     const navigate = useNavigate();
     const location = useLocation();
     const token = new URLSearchParams(location.search).get('token');
+    const { enqueueSnackbar } = useSnackbar();  
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         try{
-            const response = await axios.post('https://book-store-backend-lsnz.onrender.com/reset-password',{
+            const response = await axios.post('http://localhost:5555/reset-password',{
                 token,
                 password,
             });
-            setSuccessMessage(response.data.message);
+            
+            enqueueSnackbar(response.data.message, { variant: "success" });
             setTimeout(() => {
                 navigate('/login'); 
             },2000);
             
         }
         catch(error){
-            alert(error.response.data.message);
+            enqueueSnackbar(response.data.message, { variant: "error" });
         }
     };
     return(
@@ -33,10 +35,6 @@ const ResetPassword = () => {
         style={{ backgroundImage: "url('../../public/Image/images.png')" }}
         >
             <h2 className='text-2xl mb-4 text-center'>Reset Passowrd</h2>
-            {
-                successMessage ? (
-                    <p>{successMessage}</p>
-                ) : (
                     <form onSubmit={handleSubmit} className='text-center '>
                         <input 
                             type="password"
@@ -49,8 +47,6 @@ const ResetPassword = () => {
                         <br/>
                         <button type='submit' className='text-2xl bg-sky-300 hover:bg-sky-800 rounded-lg px-4 py-2'>Reset Password</button>
                     </form>
-                )
-            }
         </div>
     )
 }

@@ -16,4 +16,4 @@
     )
   }
 
-  export default BookCard;
+export default BookCard;

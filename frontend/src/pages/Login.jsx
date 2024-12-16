@@ -16,7 +16,7 @@ function Login() {
     setError('');
 
     try {
-      const response = await axios.post('https://book-store-backend-lsnz.onrender.com/login', { email, password });
+      const response = await axios.post('http://localhost:5555/login', { email, password });
       const { token } = response.data;
       if (token) {
         localStorage.setItem('token', token);
@@ -40,16 +40,25 @@ function Login() {
   return (
     <div
       className="p-4 bg-center bg-cover h-screen"
-      style={{ backgroundImage: "url('../../public/Image/loginImage.jpg')" }}
+      style={{ backgroundImage: "url('/Image/loginImage.jpg')" }}
     >
-      <div className="flex justify-end relative gap-4 mr-6">
-        <div className="mr-4 rounded bg-sky-300 hover:bg-blue-800 px-4 py-1">
-          <Link to="/">Home</Link>
-        </div>
-        <div className="mr-10 rounded bg-sky-300 hover:bg-blue-800 px-4 py-1">
-          <Link to="/signup">Signup</Link>
-        </div>
+      {/* Top Navigation Buttons */}
+      <div className="flex gap-2 absolute top-1 right-2 flex-wrap justify-end ml-2">
+        <Link
+          to="/"
+          className="rounded bg-sky-300 hover:bg-blue-800 px-3 py-1 text-white text-sm md:text-base"
+        >
+          Home
+        </Link>
+        <Link
+          to="/signup"
+          className="rounded bg-sky-300 hover:bg-blue-800 px-3 py-1 text-white text-sm md:text-base"
+        >
+          Signup
+        </Link>
       </div>
+
+      {/* Login Form */}
       <h2 className="text-2xl mb-4 text-center">Login</h2>
       <form onSubmit={handleLogin} className="text-center">
         <div className="mb-4">
@@ -73,7 +82,7 @@ function Login() {
           />
         </div>
         {error && <p className="text-red-500">{error}</p>}
-        <button type="submit" className="bg-sky-300 hover:bg-sky-800 px-4 py-1 rounded-lg">
+        <button type="submit" className="bg-sky-300 hover:bg-sky-800 px-4 py-1 rounded-lg text-white">
           Login
         </button>
         <Link to="/forgot-password" className="text-blue-800 hover:underline ml-4">
