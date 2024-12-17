@@ -16,7 +16,7 @@ function Login() {
     setError('');
 
     try {
-      const response = await axios.post('http://localhost:5555/login', { email, password });
+      const response = await axios.post('https://book-store-web-backend.onrender.com/login', { email, password });
       const { token } = response.data;
       if (token) {
         localStorage.setItem('token', token);
