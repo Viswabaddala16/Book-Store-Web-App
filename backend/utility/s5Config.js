@@ -36,8 +36,10 @@ export const getS3File = async (bucketName, key) => {
 
   try{
     const params = { Bucket: bucketName, Key: key ,Expires : 3600 };
-    return await s3.getSignedUrlPromise('getObject', params); // Generate a signed URL for reading the file
-
+     
+    const url = await s3.getSignedUrlPromise('getObject', params); // Generate a signed URL for reading the file
+    console.log("Signend URl",url);
+    return url;
   } catch(error){
     console.error("Error generation S2 Url :",error.message);
     throw new Error("Failed to generated signed URL");

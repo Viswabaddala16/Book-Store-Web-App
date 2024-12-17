@@ -48,7 +48,7 @@ import "@react-pdf-viewer/default-layout/lib/styles/index.css";
 
       const formData = new FormData();
       formData.append("pdf", selectedFile);
-  formData.append("title", title);
+      formData.append("title", title);
       console.log('Uploading:', { title, selectedFile });
       try {
         await axios.post("http://localhost:5555/books/upload", formData, {
