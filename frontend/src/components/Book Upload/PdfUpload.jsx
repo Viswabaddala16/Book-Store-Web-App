@@ -25,7 +25,7 @@ import "@react-pdf-viewer/default-layout/lib/styles/index.css";
 
     const fetchPdfs = async () => {
       try {
-        const response = await axios.get("http://localhost:5555/books/uploads", {
+        const response = await axios.get("https://book-store-web-backend.onrender.com/books/uploads", {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         });
         console.log("Fetched Pdfs",response.data);
@@ -51,7 +51,7 @@ import "@react-pdf-viewer/default-layout/lib/styles/index.css";
       formData.append("title", title);
       console.log('Uploading:', { title, selectedFile });
       try {
-        await axios.post("http://localhost:5555/books/upload", formData, {
+        await axios.post("https://book-store-web-backend.onrender.com/books/upload", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -72,7 +72,7 @@ import "@react-pdf-viewer/default-layout/lib/styles/index.css";
       setCurrentBookId(pdf._id);
       try{
         const response = await axios.get(
-          `http://localhost:5555/books/last-read/${pdf._id}`,
+          `https://book-store-web-backend.onrender.com/books/last-read/${pdf._id}`,
           {
             headers : {Authorization : `Bearer ${localStorage.getItem('token')}`},
           }
@@ -93,7 +93,7 @@ import "@react-pdf-viewer/default-layout/lib/styles/index.css";
         const currentPdf = pdfs.find((pdf) => pdf.url === selectedPdfUrl);
         if(currentPdf){
           await axios.post(
-            `http://localhost:5555/books/last-read/${currentBookId}`,
+            `https://book-store-web-backend.onrender.com/books/last-read/${currentBookId}`,
             {
               lastReadPage: pageNumber  
             },
