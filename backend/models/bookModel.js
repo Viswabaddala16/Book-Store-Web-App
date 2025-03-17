@@ -12,6 +12,11 @@ const bookSchema = new mongoose.Schema(
             required: [true, 'Author is required'],
             trim: true,
         },
+        price : {
+            type: Number,
+            required: [true, 'Price is required'],
+            trim: true,
+        },
         publishYear: {
             type: Number,
             required: [true, 'Publish Year is required'],

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const BookTable = ({ books }) => {
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto bg-orange-300 rounded-lg shadow-lg">
       <table className="w-full border-separate border-spacing-2">
         <thead>
           <tr>
@@ -36,13 +36,13 @@ const BookTable = ({ books }) => {
               <td className="border border-slate-600 rounded-md p-2">
                 <div className="flex justify-center gap-x-4 flex-wrap max-md:gap-y-2">
                   <Link to={`/books/details/${book._id}`}>
-                    <BsInfoCircle className="text-xl text-green-400" />
+                    <BsInfoCircle className="text-xl text-green-600" />
                   </Link>
                   <Link to={`/books/edit/${book._id}`}>
-                    <AiOutlineEdit className="text-xl text-yellow-400" />
+                    <AiOutlineEdit className="text-xl text-yellow-600" />
                   </Link>
                   <Link to={`/books/delete/${book._id}`}>
-                    <MdOutlineDelete className="text-xl text-red-400" />
+                    <MdOutlineDelete className="text-xl text-red-600" />
                   </Link>
                 </div>
               </td>

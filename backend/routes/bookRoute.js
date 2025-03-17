@@ -17,12 +17,14 @@ router.post('/upload', authenticate, upload.single('pdf'), async (req, res) => {
     console.log('Request Body:', req.body);
     console.log('Uploaded File:', req.file);
   
-    if (!req.file || !req.body.title) {
+    if (!req.file || !req.body.title || !req.body.author || !req.body.price) {
       return res.status(400).json({ message: 'File and title are required.' });
     }
   
     try {
       const { title } = req.body;
+      const { author} = req.body;
+      const {price}  = req.body;
       const userId = req.user?.id;
       if (!userId) {
         return res.status(401).json({ message: 'User not authenticated.' });
@@ -35,7 +37,8 @@ router.post('/upload', authenticate, upload.single('pdf'), async (req, res) => {
   
       const newBook = new Book({
         title,
-        author : "unknown",
+        author,
+        price,
         publishYear: new Date().getFullYear(),
         filePath: key,
         fileUrl,
@@ -156,7 +159,7 @@ router.post('/', authenticate, async (request,response) => {
 router.get('/',authenticate,async (request,response) => {
     const userId = request.user?.id;
     try {
-        const books = await Book.find({userId}).select('title filePath');
+        const books = await Book.find({userId}).select('title author publishYear price filePath');
         return response.status(200).json({
             count : books.length,
             data : books,

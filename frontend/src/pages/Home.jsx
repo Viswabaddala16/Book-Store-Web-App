@@ -6,15 +6,18 @@ import { MdOutlineAddBox } from 'react-icons/md';
 import BookTable from '../components/Home/BookTable';
 import BookCard from '../components/Home/BookCard';
 import { useSnackbar } from 'notistack';  
+// import Cart from './components/Cart/Cart';
 
 function Home() {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
   const [showType, setShowType] = useState('');
   const { enqueueSnackbar } = useSnackbar();
+  const [cart,setCart] = useState([]);
   const navigate = useNavigate();
 
   const token = localStorage.getItem('token');
+  console.log("Token",token);
   const isLoggedIn = Boolean(token);
 
   useEffect(() => {
@@ -23,7 +26,7 @@ function Home() {
     const fetchBooks = async () => {
       try {
         setLoading(true);
-        const response = await axios.get('https://book-store-backend-lsnz.onrender.com/books', {
+        const response = await axios.get('http://localhost:5555/books', {
           headers: { Authorization: `Bearer ${token}` },
         });
         setBooks(response.data.data);
@@ -49,11 +52,14 @@ function Home() {
     enqueueSnackbar("Logout Successfully", { variant: "success" });
     navigate('/');
   };
+  const goToCart = () => {
+    navigate('/cart',{state: {cart}});
+  }
 
   return (
     <div
       className="p-4 min-h-screen bg-cover bg-center md:p-8"
-      style={{ backgroundImage: "url('/Image/images.png')" }}
+      style={{ backgroundImage: "url('/Image/home.png')" }}
     >
       <div className='flex flex-col md:flex-row justify-between items-center'>
         <h1 className='text-3xl md:text-5xl my-4 md:my-8 mx-5 text-center md:text-left'>
@@ -70,12 +76,21 @@ function Home() {
               </Link>
             </>
           ) : (
-            <button onClick={handleLogout} 
-            className='bg-red-500 text-white hover:bg-red-700
-             px-4 py-1 sm:py-1 sm:px-2 md:px-3 md:py-2 rounded-lg
-            transition-all duration-300 absolute top-2 right-2 sm:top-3 sm:right-0 md:top-4 md:right-'
-            >
-              Logout</button>
+            <>
+              <div className="flex flex-col md:flex-row items-center gap-2 md:gap-4 absolute top-4 right-4 md:top-6 md:right-8">
+                <button
+                className="bg-blue-500 text-white px-4 py-2 rounded-lg w-full md:w-auto"
+                onClick={goToCart}
+              >
+              Cart({cart.length})
+                </button>
+                <button onClick={handleLogout} 
+                className='bg-red-500 text-white hover:bg-red-700 px-4 py-2 rounded-lg w-full md:w-auto'
+              >
+                Logout
+                </button>
+              </div>
+            </>
           )}
         </div>
       </div>
@@ -98,11 +113,12 @@ function Home() {
                 <button className='bg-sky-300 hover:bg-sky-800 px-4 py-1 rounded-lg text-sm md:text-base' >Upload File</button>
               </Link>
             </div>
-            <div className='mt-4'>{showType === 'table' ? <BookTable books={books} /> : <BookCard books={books} />}</div>
+            <div className='mt-4'>{showType === 'table' ? <BookTable books={books} /> : <BookCard books={books} cart={cart} setCart={setCart} />}</div>
           </>
         )
       ) : (
         <h2 className='md:text-2xl text-xl text-gray-500 mx-5 my-6'>
+          
           Please log in to view the book list.
         </h2>
       )}

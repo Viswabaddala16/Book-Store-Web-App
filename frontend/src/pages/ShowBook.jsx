@@ -45,33 +45,36 @@ function ShowBook() {
     }
 
     return (
-        <div className='p-4'>
-            <BackButton />
-            <h1 className='text-3xl my-4'>Show Book</h1>
-            <div className="flex flex-col border-2 border-sky-800 w-fit p-4 rounded-lg">
-                <div className='my-4'>
-                    <span className='mr-4 text-xl text-gray-500'>Id</span>
-                    <span>{book._id}</span>
-                </div>
-                <div className='my-4'>
-                    <span className='mr-4 text-xl text-gray-500'>Title</span>
-                    <span>{book.title}</span>
-                </div>
-                <div className='my-4'>
-                    <span className='mr-4 text-xl text-gray-500'>Author</span>
-                    <span>{book.author}</span>
-                </div>
-                <div className='my-4'>
-                    <span className='mr-4 text-xl text-gray-500'>Publish Year</span>
-                    <span>{book.publishYear}</span>
-                </div>
-                <div className='my-4'>
-                    <span className='mr-4 text-xl text-gray-500'>Create Time</span>
-                    <span>{new Date(book.createdAt).toLocaleString()}</span>
-                </div>
-                <div className='my-4'>
-                    <span className='mr-4 text-xl text-gray-500'>Last Update Time</span>
-                    <span>{new Date(book.updatedAt).toLocaleString()}</span>
+        <div className='p-4 bg-orange-300 min-h-screen flex items-center justify-center '>
+            
+            <div className="bg-white max-w-md shadow-lg rounded-lg">
+            <BackButton/>
+                <h1 className='text-3xl my-4 text-center'>Show Book</h1>
+                <div className="flex flex-col border-2 border-sky-800 w-fit p-4 rounded-lg">
+                    <div className='my-4'>
+                        <span className='mr-4 text-xl text-gray-500'>Id</span>
+                        <span>{book._id}</span>
+                    </div>
+                    <div className='my-4'>
+                        <span className='mr-4 text-xl text-gray-500'>Title</span>
+                        <span>{book.title}</span>
+                    </div>
+                    <div className='my-4'>
+                        <span className='mr-4 text-xl text-gray-500'>Author</span>
+                        <span>{book.author}</span>
+                    </div>
+                    <div className='my-4'>
+                        <span className='mr-4 text-xl text-gray-500'>Publish Year</span>
+                        <span>{book.publishYear}</span>
+                    </div>
+                    <div className='my-4'>
+                        <span className='mr-4 text-xl text-gray-500'>Create Time</span>
+                        <span>{new Date(book.createdAt).toLocaleString()}</span>
+                    </div>
+                    <div className='my-4'>
+                        <span className='mr-4 text-xl text-gray-500'>Last Update Time</span>
+                        <span>{new Date(book.updatedAt).toLocaleString()}</span>
+                    </div>
                 </div>
             </div>
         </div>

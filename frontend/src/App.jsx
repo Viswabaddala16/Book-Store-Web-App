@@ -11,12 +11,24 @@ import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
 import PrivateRoute from './components/PrivateRoute';
 import PdfUpload from './components/Book Upload/PdfUpload';
+import Cart from './components/Cart/Cart.jsx';
+import CheckoutPage from './components/CheckoutPage.jsx';
+import OrderConfirmation from './pages/OrderConformation.jsx';
 function App() {
   
   return (
     <Routes>
       <Route path = "/" 
       element = {<Home />}
+      />
+      <Route path = "/cart" 
+        element = {<Cart />}
+      /> 
+      <Route path = "/checkout" 
+      element = {<CheckoutPage />}
+      /> 
+      <Route path = "/order-confirmation" 
+      element = {<OrderConfirmation />}
       />  
       <Route path='/signup' 
         element={<Signup />} 

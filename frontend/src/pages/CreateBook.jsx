@@ -53,7 +53,7 @@ function CreateBook() {
   };
 
   return (
-    <div className="p-4 min-h-screen bg-gray-50 flex flex-col ">
+    <div className="p-4 min-h-screen bg-gray-50 flex flex-col bg-orange-300">
       <BackButton />
       <h1 className="text-2xl my-4 font-semibold text-primary text-center">Create Book</h1>
       {loading && <Spinner />}
