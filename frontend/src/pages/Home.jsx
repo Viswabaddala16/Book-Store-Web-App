@@ -26,7 +26,11 @@ function Home() {
     const fetchBooks = async () => {
       try {
         setLoading(true);
+<<<<<<< HEAD
         const response = await axios.get('http://localhost:5555/books', {
+=======
+        const response = await axios.get('https://book-store-web-backend.onrender.com/books', {
+>>>>>>> 64c8f012440da791c553601e60d1582a4eebd93b
           headers: { Authorization: `Bearer ${token}` },
         });
         setBooks(response.data.data);

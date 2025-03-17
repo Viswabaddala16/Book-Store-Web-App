@@ -35,7 +35,7 @@ function EditBook() {
         return;
       }
         setLoading(true);
-        const response = await axios.get(`http://localhost:5555/books/${id}`, {
+        const response = await axios.get(`https://book-store-web-backend.onrender.com/books/${id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         const { title, author, publishYear } = response.data;

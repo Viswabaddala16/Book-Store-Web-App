@@ -33,6 +33,7 @@ function PdfUpload() {
     fetchPdfs();
   }, []);
 
+<<<<<<< HEAD
   const fetchPdfs = async () => {
     try {
       const response = await axios.get("http://localhost:5555/books/uploads", {
@@ -87,6 +88,11 @@ function PdfUpload() {
       const response = await axios.get(
         `http://localhost:5555/books/last-read/${pdf._id}`,
         {
+=======
+    const fetchPdfs = async () => {
+      try {
+        const response = await axios.get("https://book-store-web-backend.onrender.com/books/uploads", {
+>>>>>>> 64c8f012440da791c553601e60d1582a4eebd93b
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         }
       );
@@ -97,13 +103,66 @@ function PdfUpload() {
     pdfViewerRef.current.scrollIntoView({ behavior: "smooth" });
   };
 
+<<<<<<< HEAD
   // Debounced saveLastReadPage
   const saveLastReadPage = useCallback(
     debounce(async (pageNumber) => {
+=======
+    const handleFileUpload = async (e) => {
+      e.preventDefault();
+
+      if (!selectedFile || !title) {
+        enqueueSnackbar("Please provide a title and select a PDF file.", {
+          variant: "warning",
+        });
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append("pdf", selectedFile);
+      formData.append("title", title);
+      console.log('Uploading:', { title, selectedFile });
+      try {
+        await axios.post("https://book-store-web-backend.onrender.com/books/upload", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
+        enqueueSnackbar("File uploaded successfully.", { variant: "success" });
+        setTitle("");
+        setSelectedFile(null);
+        fetchPdfs();
+      } catch (error) {
+        enqueueSnackbar("Error uploading file.", { variant: "error" });
+        console.log("Error uploading file:", error.message);
+      }
+    };
+    const handleViewPdf = async (pdf) => {
+      console.log("Selected PDf",pdf);
+      setSelectedPdfUrl(pdf.url);
+      setCurrentBookId(pdf._id);
+      try{
+        const response = await axios.get(
+          `https://book-store-web-backend.onrender.com/books/last-read/${pdf._id}`,
+          {
+            headers : {Authorization : `Bearer ${localStorage.getItem('token')}`},
+          }
+        );
+        setLastReadPage(response.data.lastReadPage || 0);
+      }catch(error){
+        console.log("Error fetching last read page",error.message);
+      }
+      pdfViewerRef.current.scrollIntoView({behavior  : 'smooth'});
+      // `http://localhost:5555/${filePath}`
+    };
+    const saveLastReadPage = async(pageNumber) => {
+>>>>>>> 64c8f012440da791c553601e60d1582a4eebd93b
       if (!currentBookId) {
         console.warn("Cannot save last read page, no currentBookId set.");
         return;
       }
+<<<<<<< HEAD
       try {
         await axios.post(
           `http://localhost:5555/books/last-read/${currentBookId}`,
@@ -120,6 +179,25 @@ function PdfUpload() {
         });
       } catch (error) {
         console.error("Error saving last read page:", error.message);
+=======
+      try{
+        const currentPdf = pdfs.find((pdf) => pdf.url === selectedPdfUrl);
+        if(currentPdf){
+          await axios.post(
+            `https://book-store-web-backend.onrender.com/books/last-read/${currentBookId}`,
+            {
+              lastReadPage: pageNumber  
+            },
+            {
+              headers : {Authorization: `Bearer ${localStorage.getItem('token')}`},
+            }
+          );
+          setLastReadPage(pageNumber);
+          enqueueSnackbar("Last read page saved successfully.", { variant: "success" });
+        }
+      } catch(error){
+        console.error("Error saving last read page :",error.message);
+>>>>>>> 64c8f012440da791c553601e60d1582a4eebd93b
         enqueueSnackbar("Error saving last read page.", { variant: "error" });
       }
     }, 2000),
