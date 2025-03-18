@@ -14,7 +14,7 @@ function ShowBook() {
         const fetchBook = async () => {
             try {
                 const token = localStorage.getItem('token'); // Assuming token is stored in localStorage
-                const response = await axios.get(`https://book-store-web-backend.onrender.com/books/${id}`, {
+                const response = await axios.get(`https://book-store-web-app-backend.onrender.com/books/${id}`, {
                     headers: {
                         Authorization: `Bearer ${token}`, // Add Authorization header
                     },
