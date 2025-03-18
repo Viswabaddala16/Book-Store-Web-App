@@ -35,7 +35,7 @@ function EditBook() {
         return;
       }
         setLoading(true);
-        const response = await axios.get(`https://book-store-web-backend.onrender.com/books/${id}`, {
+        const response = await axios.get(`https://book-store-web-app-backend.onrender.com/books/${id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         const { title, author, publishYear } = response.data;
@@ -71,7 +71,7 @@ function EditBook() {
 
     try {
       setLoading(true);
-      await axios.put(`http://localhost:5555/books/${id}`, data, {
+      await axios.put(`https://book-store-web-app-backend.onrender.com/books/${id}`, data, {
         headers: { Authorization: `Bearer ${token}` },
       });
       enqueueSnackbar('Book updated successfully!', { variant: 'success' });
