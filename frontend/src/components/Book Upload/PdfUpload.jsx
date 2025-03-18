@@ -64,7 +64,7 @@ function PdfUpload() {
     formData.append("price", price);
     console.log("Uploading:", { title,author,price,selectedFile });
     try {
-      await axios.post("http://localhost:5555/books/upload", formData, {
+      await axios.post("https://book-store-web-app-backend.onrender.com/books/upload", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -86,12 +86,12 @@ function PdfUpload() {
     setCurrentBookId(pdf._id);
     try {
       const response = await axios.get(
-        `http://localhost:5555/books/last-read/${pdf._id}`,
+        `https://book-store-web-app-backend.onrender.com/books/last-read/${pdf._id}`,
         {
 =======
     const fetchPdfs = async () => {
       try {
-        const response = await axios.get("https://book-store-web-backend.onrender.com/books/uploads", {
+        const response = await axios.get("https://book-store-web-app-backend.onrender.com/books/uploads", {
 >>>>>>> 64c8f012440da791c553601e60d1582a4eebd93b
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         }
@@ -123,7 +123,7 @@ function PdfUpload() {
       formData.append("title", title);
       console.log('Uploading:', { title, selectedFile });
       try {
-        await axios.post("https://book-store-web-backend.onrender.com/books/upload", formData, {
+        await axios.post("https://book-store-web-app-backend.onrender.com/books/upload", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -144,7 +144,7 @@ function PdfUpload() {
       setCurrentBookId(pdf._id);
       try{
         const response = await axios.get(
-          `https://book-store-web-backend.onrender.com/books/last-read/${pdf._id}`,
+          `https://book-store-web-app-backend.onrender.com/books/last-read/${pdf._id}`,
           {
             headers : {Authorization : `Bearer ${localStorage.getItem('token')}`},
           }
@@ -165,7 +165,7 @@ function PdfUpload() {
 <<<<<<< HEAD
       try {
         await axios.post(
-          `http://localhost:5555/books/last-read/${currentBookId}`,
+          `https://book-store-web-app-backend.onrender.com/books/last-read/${currentBookId}`,
           {
             lastReadPage: pageNumber,
           },
@@ -184,7 +184,7 @@ function PdfUpload() {
         const currentPdf = pdfs.find((pdf) => pdf.url === selectedPdfUrl);
         if(currentPdf){
           await axios.post(
-            `https://book-store-web-backend.onrender.com/books/last-read/${currentBookId}`,
+            `https://book-store-web-app-backend.onrender.com/books/last-read/${currentBookId}`,
             {
               lastReadPage: pageNumber  
             },
