@@ -15,7 +15,7 @@ function Signup() {
     setError('');
 
     try {
-      const response = await axios.post('https://book-store-web-backend.onrender.com/signup', { email, password });
+      const response = await axios.post('https://book-store-web-app-backend.onrender.com/signup', { email, password });
       enqueueSnackbar("Signup Successfully", { variant: "success" });
       navigate('/login'); // Redirect to login after successful signup
     } catch (error) {
