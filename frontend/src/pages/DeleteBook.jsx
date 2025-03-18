@@ -36,7 +36,7 @@ function DeleteBook() {
       setLoading(true);
 
       // Proceed with delete
-      const response = await axios.delete(`https://book-store-web-backend.onrender.com/books/${id}`, {
+      const response = await axios.delete(`https://book-store-web-app-backend.onrender.com/books/${id}`, {
         headers: {
           Authorization: `Bearer ${authToken}`,
         },
