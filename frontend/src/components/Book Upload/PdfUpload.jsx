@@ -36,7 +36,7 @@ function PdfUpload() {
 <<<<<<< HEAD
   const fetchPdfs = async () => {
     try {
-      const response = await axios.get("http://localhost:5555/books/uploads", {
+      const response = await axios.get("https://book-store-web-app-backend.onrender.com/books/uploads", {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       console.log("Fetched Pdfs", response.data);
