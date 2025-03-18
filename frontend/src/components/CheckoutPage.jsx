@@ -12,7 +12,7 @@ const CheckoutPage = () => {
 
   useEffect(() => {
     // Fetch CSRF token first
-    axios.get("http://localhost:5555/api/get-csrf-token", { withCredentials: true })
+    axios.get("https://book-store-web-app-backend.onrender.com/api/get-csrf-token", { withCredentials: true })
       .then((response) => {
         setCsrfToken(response.data.csrfToken);
       })
