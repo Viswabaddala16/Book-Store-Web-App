@@ -33,7 +33,6 @@ function PdfUpload() {
     fetchPdfs();
   }, []);
 
-<<<<<<< HEAD
   const fetchPdfs = async () => {
     try {
       const response = await axios.get("https://book-store-web-app-backend.onrender.com/books/uploads", {
@@ -88,11 +87,9 @@ function PdfUpload() {
       const response = await axios.get(
         `https://book-store-web-app-backend.onrender.com/books/last-read/${pdf._id}`,
         {
-=======
     const fetchPdfs = async () => {
       try {
         const response = await axios.get("https://book-store-web-app-backend.onrender.com/books/uploads", {
->>>>>>> 64c8f012440da791c553601e60d1582a4eebd93b
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         }
       );
@@ -103,11 +100,9 @@ function PdfUpload() {
     pdfViewerRef.current.scrollIntoView({ behavior: "smooth" });
   };
 
-<<<<<<< HEAD
   // Debounced saveLastReadPage
   const saveLastReadPage = useCallback(
     debounce(async (pageNumber) => {
-=======
     const handleFileUpload = async (e) => {
       e.preventDefault();
 
@@ -157,12 +152,10 @@ function PdfUpload() {
       // `http://localhost:5555/${filePath}`
     };
     const saveLastReadPage = async(pageNumber) => {
->>>>>>> 64c8f012440da791c553601e60d1582a4eebd93b
       if (!currentBookId) {
         console.warn("Cannot save last read page, no currentBookId set.");
         return;
       }
-<<<<<<< HEAD
       try {
         await axios.post(
           `https://book-store-web-app-backend.onrender.com/books/last-read/${currentBookId}`,
@@ -179,7 +172,6 @@ function PdfUpload() {
         });
       } catch (error) {
         console.error("Error saving last read page:", error.message);
-=======
       try{
         const currentPdf = pdfs.find((pdf) => pdf.url === selectedPdfUrl);
         if(currentPdf){
@@ -197,7 +189,6 @@ function PdfUpload() {
         }
       } catch(error){
         console.error("Error saving last read page :",error.message);
->>>>>>> 64c8f012440da791c553601e60d1582a4eebd93b
         enqueueSnackbar("Error saving last read page.", { variant: "error" });
       }
     }, 2000),
